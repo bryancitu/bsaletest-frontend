@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    font-family: sans-serif,-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size:16px;
+    background-color: #f5f5f559;
+    color: #5a5a5a;
+}
+
+a{text-decoration: none;color: #5a5a5a;}
+.fa{font-size: 20px;}
+  
+
+header{padding: 25px;background-color: white;box-shadow: 2px 2px 2px 0px #cccccc79;margin-bottom: 50px;}
+.container_header{display: flex;justify-content: space-between;max-width: 1200px;margin: auto;align-items: center;}
+.logo{font-size: 24px;font-weight: bold;}
+.container__search{width: 800px;border: 1px solid #ccc;padding: 7px 10px;border-radius: 8px;}
+.container__search input{border: none; width: 770px;font-size: 16px;outline: none;}
+
+.container__products__by_cat h2{text-align: center;}
+.container__products{display: flex;max-width: 1250px;margin: auto;overflow-x: auto;overflow-y: hidden;-webkit-overflow-scrolling: touch;user-select: none;
+    -ms-overflow-style: -ms-autohiding-scrollbar;margin-bottom: 70px;padding: 10px 0px;}
+.container__products::-webkit-scrollbar {display:none;}
+
+.container__product{border: 1px solid #ccc;width: 200px;height: 350px;padding: 15px;margin-left: 15px;display: flex;flex-direction: column;
+    justify-content: space-evenly;background-color: white;box-shadow: 2px 2px 2px 0px #cccccc79;}
+.container__product img{width: inherit;}
+
+.container__price__car{display: flex;justify-content: space-between;}
