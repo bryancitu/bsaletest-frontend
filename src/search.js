@@ -22,9 +22,15 @@ const main = async (num,page) => {
 
     let container_products = document.getElementById("search_products");
     let path = window.location.href
-    let query = path.split("?product=")[1]+page;
-
-    let resp = await productsSearchService(query);
+    let query = path.split("?product=")[1];
+    let querySearch = query
+    if (query == '' ) {
+        querySearch = "None"
+    }
+    querySearch +=  page
+    
+    let resp = await productsSearchService(querySearch);
+    console.log(resp);
 
     let content = '';
     let element = '';
@@ -93,6 +99,7 @@ const main = async (num,page) => {
 
         if (resp.data.count > 15) {
             content += `
+                <h1>Resultado de la busqueda: ${query}</h1>
                 <div class="container__grid__products">
                     ${element}
                 </div>
@@ -100,8 +107,15 @@ const main = async (num,page) => {
                     ${pagination}
                 </div>
             `            
+        }
+        else if (resp.data.count == 0) {
+            content += `
+                <h1>Resultado de la busqueda: ${query}</h1>
+                <h2>Ninguna coincidencia con la busqueda :(</h2>
+            ` 
         }else{
             content += `
+                <h1>Resultado de la busqueda: ${query}</h1>
                 <div class="container__grid__products">
                     ${element}
                 </div>

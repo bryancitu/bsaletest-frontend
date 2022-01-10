@@ -12,13 +12,16 @@ body {
 
 a{text-decoration: none;color: #5a5a5a;}
 .fa{font-size: 20px;}
-  
+
+h1{max-width: 1220px;margin: auto;margin-bottom: 20px;}  
+h2{text-align: center;}
 
 header{padding: 25px;background-color: white;box-shadow: 2px 2px 2px 0px #cccccc79;margin-bottom: 50px;}
 .container_header{display: flex;justify-content: space-between;max-width: 1200px;margin: auto;align-items: center;}
 .logo{font-size: 24px;font-weight: bold;}
-.container__search{width: 800px;border: 1px solid #ccc;padding: 7px 10px;border-radius: 8px;}
-.container__search input{border: none; width: 770px;font-size: 16px;outline: none;}
+.container__search{width: 70%;border: 1px solid #ccc;padding: 7px 10px;border-radius: 8px;}
+.container__search input{border: none; width: calc(100% - 40px);font-size: 16px;outline: none;}
+.container__search button{background-color: white;border: none;outline: none;}
 
 .container__products__by_cat h2{text-align: center;}
 .container__products{display: flex;max-width: 1250px;margin: auto;overflow-x: auto;overflow-y: hidden;-webkit-overflow-scrolling: touch;user-select: none;
