@@ -34,8 +34,8 @@ const productsCategoryService = async (category) => {
     }
 }
 
-const productsSearchService = async (location,product) => {
-    const requestUrl = `${API_BASE_URL}/product/search/${location}/${product}`;
+const productsSearchService = async (product) => {
+    const requestUrl = `${API_BASE_URL}/product/search/${product}`;
 
     try {
         const resp = await axios({
@@ -43,6 +43,7 @@ const productsSearchService = async (location,product) => {
             method: 'get',
         });
         if (resp.status == 200 || 201) {
+            console.log(resp);
             return resp
         }
     } catch (error) {
@@ -50,11 +51,13 @@ const productsSearchService = async (location,product) => {
     }
 }
 
+
 const main = async () => {
 
     let container_products = document.getElementById("products");
 
     let resp = await categoryService();
+    let resp6 = await productsSearchService('ener');
 
     let content = '';
 
@@ -100,6 +103,7 @@ const main = async () => {
     `
     
     console.log(resp.data);
+    console.log(resp6.data);
 }
 
 main()

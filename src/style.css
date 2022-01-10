@@ -27,6 +27,18 @@ header{padding: 25px;background-color: white;box-shadow: 2px 2px 2px 0px #cccccc
 
 .container__product{border: 1px solid #ccc;width: 200px;height: 350px;padding: 15px;margin-left: 15px;display: flex;flex-direction: column;
     justify-content: space-evenly;background-color: white;box-shadow: 2px 2px 2px 0px #cccccc79;}
-.container__product img{width: inherit;}
+.container__product img{width: inherit;max-height: 270px;}
 
 .container__price__car{display: flex;justify-content: space-between;}
+
+
+/* styles search page */
+
+.container__grid__products{display: grid;grid-template-columns: 1fr 1fr 1fr 1fr 1fr;max-width: 1250px;margin: auto;row-gap: 25px;margin-bottom: 50px;}
+
+/* pagination style */
+.paginacion{margin: 50px auto;text-align: center;}
+.paginacion button {border: 1px solid gray;margin: 0 4px;font-size: 18px;padding: 5px 10px;background-color: white;}
+.paginacion button:first-child {border-top-left-radius: 5px;border-bottom-left-radius: 5px;}
+.paginacion button:last-child {border-top-right-radius: 5px;border-bottom-right-radius: 5px;}
+.activate{background-color: #7e7e7e!important;color: white;}
