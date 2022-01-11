@@ -1,6 +1,38 @@
-import { categoryService, productsCategoryService } from './services.js';
+const API_BASE_URL = "https://bsaletest-app.herokuapp.com/api";
 
-const main = async () => {
+categoryService = async () => {
+    const requestUrl = `${API_BASE_URL}/product/categories/`;
+
+    try {
+        const resp = await axios({
+            url: requestUrl,
+            method: 'get',
+        });
+        if (resp.status == 200 || 201) {
+            return resp
+        }
+    } catch (error) {
+        return false
+    }
+}
+
+productsCategoryService = async (category) => {
+    const requestUrl = `${API_BASE_URL}/product/products/${category}/`;
+
+    try {
+        const resp = await axios({
+            url: requestUrl,
+            method: 'get',
+        });
+        if (resp.status == 200 || 201) {
+            return resp
+        }
+    } catch (error) {
+        return false
+    }
+}
+
+main = async () => {
     let container_products = document.getElementById("products");
 
     //loader

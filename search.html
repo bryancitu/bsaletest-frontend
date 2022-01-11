@@ -31,23 +31,6 @@
     </header>
     <div id="search_products"></div>
     
-    <script src="./src/search.js" type="module"></script>
-    <script>
-        let numPage =  1
-        showPrevio = async () => {
-            numPage -= 1
-            main(numPage,`?page=${numPage}`)
-        }
-
-        showPage = async (n) => {
-            numPage = n
-            main(numPage,`?page=${numPage}`)
-        }
-
-        showNext = async () => {
-            numPage += 1
-            main(numPage,`?page=${numPage}`)
-        }
-    </script>
+    <script src="./src/search.js"></script>
 </body>
 </html>
