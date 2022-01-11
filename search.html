@@ -12,7 +12,7 @@
 <body>
     <header>
         <div class="container_header">
-            <a href="./index.html"><div class="logo">Bsale Tesy</div></a>
+            <a href="./index.html"><div class="logo">Bsale Test</div></a>
             <div class="container__search">
                 <form action="" method="get">
                     <input type="search" placeholder="buscar ..." name="product" id="product"> 
@@ -31,6 +31,23 @@
     </header>
     <div id="search_products"></div>
     
-    <script src="./src/search.js"></script>
+    <script src="./src/search.js" type="module"></script>
+    <script>
+        let numPage =  1
+        showPrevio = async () => {
+            numPage -= 1
+            main(numPage,`?page=${numPage}`)
+        }
+
+        showPage = async (n) => {
+            numPage = n
+            main(numPage,`?page=${numPage}`)
+        }
+
+        showNext = async () => {
+            numPage += 1
+            main(numPage,`?page=${numPage}`)
+        }
+    </script>
 </body>
 </html>
