@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Bsale Test - Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="./src/style.css">
@@ -12,7 +12,13 @@
 <body>
     <header>
         <div class="container_header">
-            <a href="./index.html"><div class="logo">Bsale Test</div></a>
+            <button class="btn__bar" onclick="onSidebar()" type="submit"><i class="fa fa-bars" aria-hidden="true"></i></button>
+            <div id="sidebar"></div>
+            <a class="container__logo" href="./index.html"><div class="logo">Bsale Test</div></a>
+            <div class="container__categories">
+                <div class="title_category">categorias</div>
+                <div id="categories"></div>
+            </div>
             <div class="container__search">
                 <form action="" method="get">
                     <input type="search" placeholder="buscar ..." name="product" id="product"> 
@@ -29,8 +35,7 @@
             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
         </div>
     </header>
-    <div id="products">
-    </div>
+    <div id="products"></div>
     
     <script src="./src/index.js"></script>
 </body>

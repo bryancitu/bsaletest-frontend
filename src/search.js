@@ -1,5 +1,21 @@
 const API_BASE_URL = "https://bsaletest-app.herokuapp.com/api";
 
+categoryService = async () => {
+    const requestUrl = `${API_BASE_URL}/product/categories/`;
+
+    try {
+        const resp = await axios({
+            url: requestUrl,
+            method: 'get',
+        });
+        if (resp.status == 200 || 201) {
+            return resp
+        }
+    } catch (error) {
+        return false
+    }
+}
+
 productsSearchService = async (product) => {
     const requestUrl = `${API_BASE_URL}/product/search/${product}`;
 
@@ -20,6 +36,32 @@ let numPage =  1
 
 main = async (num,page) => {
 
+    let respCat = await categoryService();
+    
+    let container_categories = document.getElementById("categories");
+    let sidebar = document.getElementById("sidebar");
+
+    let header_categories = ''
+
+    console.log(respCat.data);
+    respCat.data.map((d,i) => {
+        header_categories += `
+            <a href="./category.html?category=${d.name}">
+                <span> ${d.name}</span>
+            </a>
+        `
+    })
+    container_categories.innerHTML = header_categories
+    sidebar.innerHTML = `
+        <span onclick="onClose()" class="btn-close-sidebar"><b>x</b></span>
+        <div class="container__sidebar">
+            <a href="./index.html" style="border: none"><h1>Bsale Test</h1></a>
+            <h2>Nuestras categorias:</h2>
+            ${header_categories}
+        </div>
+    `
+
+    // load data
     let container_products = document.getElementById("search_products");
 
     // loader
@@ -172,4 +214,14 @@ showPage = async (n) => {
 showNext = async () => {
     numPage += 1
     main(numPage,`?page=${numPage}`)
+}
+
+onSidebar = () => {
+    let sidebar = document.getElementById("sidebar");
+    sidebar.style.display = "block"
+}
+
+onClose = () => {
+    let sidebar = document.getElementById("sidebar");
+    sidebar.style.display = "none"
 }

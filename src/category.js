@@ -33,19 +33,18 @@ productsCategoryService = async (category) => {
 }
 
 main = async () => {
-
-    let resp = await categoryService();
+    let respCat = await categoryService();
     
     let container_categories = document.getElementById("categories");
     let sidebar = document.getElementById("sidebar");
 
     let header_categories = ''
 
-    console.log(resp.data);
-    resp.data.map((d) => {
+    console.log(respCat.data);
+    respCat.data.map((d,i) => {
         header_categories += `
             <a href="./category.html?category=${d.name}">
-                <span> - ${d.name}</span>
+                <span> ${d.name}</span>
             </a>
         `
     })
@@ -59,10 +58,11 @@ main = async () => {
             ${header_categories}
         </div>
     `
-    //load data
-    let container_products = document.getElementById("products");
 
-    //loader
+    // load data
+    let container_products = document.getElementById("products_categories");
+
+    // loader
     let loader = ''
     for (let i = 0; i < 5; i++) {
         loader += `
@@ -71,61 +71,71 @@ main = async () => {
         `             
     }
     container_products.innerHTML = `
-        <h2 class="loader_cat_name"></h2>
+        <h1>Categoria: </h1>
         <div class="container__loader_products">
             ${loader}
         </div>
-        <h2 class="loader_cat_name"></h2>
         <div class="container__loader_products">
             ${loader}
         </div>
     `
 
-    let content = '';
-
+    // get query
+    let path = window.location.href
+    let my_category = path.split("?category=")[1].replace(/\%20/gi, " ");
+    
     // loading data
+    let resp = await productsCategoryService(my_category);
+    console.log(resp);
+
+    let content = '';
+    let element = '';
 
     if (resp.statusText = "OK") {
-
-        for (let i = 0; i < resp.data.length; i++) {
-            let respProdCat = await productsCategoryService(resp.data[i].name);
-            let element = '';
-    
-            if (respProdCat.data != undefined ) {
-                for (let a = 0; a < respProdCat.data.length; a++) {
-                    let image = ''
-                    if (respProdCat.data[a].url_image != 'nan') {
-                        image = `<img src=${respProdCat.data[a].url_image} alt="">`
-                    }else{
-                        image = `<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png" alt="">`
-                    }
-                    element += `
-                        <div class="container__product">
-                            ${image}
-                            <div>
-                                <h4>${respProdCat.data[a].name}</h4>
-                                <div class="container__price__car">
-                                    <div class="price">$ ${respProdCat.data[a].price}</div>
-                                    <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                                </div>
+        
+        if (resp.data != undefined) {
+            for (let i = 0; i < resp.data.length; i++) {
+                let image = ''
+                if (resp.data[i].url_image != 'nan') {
+                    image = `<img src=${resp.data[i].url_image} alt="">`
+                }else{
+                    image = `<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png" alt="">`
+                }
+                element += `
+                    <div class="container__product">
+                        ${image}
+                        <div>
+                            <h4>${resp.data[i].name}</h4>
+                            <div class="container__price__car">
+                                <div class="price">$ ${resp.data[i].price}</div>
+                                <i class="fa fa-cart-plus" aria-hidden="true"></i>
                             </div>
                         </div>
-                    `          
-                }            
+                    </div>
+                `       
             }
     
-            content += `
-                <div class="container__products__by_cat"> 
-                    <h2> ${resp.data[i].name.toUpperCase() } </h2> 
-                    <div class="container__products">${element}</div>
-                </div>
-            `        
-        }
+            if (resp.data.count == 0) {
+                content += `
+                    <h1>Categoria: ${my_category.toUpperCase()}</h1>
+                    <h2>Ninguna coincidencia con la busqueda :(</h2>
+                ` 
+            }else{
+                content += `
+                    <h1>Categoria: ${my_category.toUpperCase()}</h1>
+                    <div class="container__grid__products">
+                        ${element}
+                    </div>
+                ` 
+            }
     
+        }
+     
     
         container_products.innerHTML = `
             ${content}
         `
+        
     } else {
         content = "<h1>ERROR 404 VUELVE MAS TARDE :(</h1>"
     }

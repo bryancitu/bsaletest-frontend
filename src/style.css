@@ -36,10 +36,46 @@ animation: loading 2s infinite ease-in;}
 /* header style */
 header{padding: 25px;background-color: white;box-shadow: 2px 2px 2px 2px #cccccc79;margin-bottom: 50px;}
 .container_header{display: flex;justify-content: space-between;max-width: 1200px;margin: auto;align-items: center;}
+.container__logo{display: none;}
+
+#sidebar{display: none;position: fixed;background-color: #ccc;z-index: 1;left: 0;top: 0;width: 100%;height: 100%;overflow: auto;box-shadow: 5px 0px 50px rgba(204, 204, 204, 0.11);
+    background-color: rgba(0,0,0,0.6);border: none!important;margin: auto;align-content: center;}
+#sidebar a{color: #fff;font-size: 20px;margin-bottom: 25px;padding: 10px;border-bottom: 1px solid #ccc;}
+#sidebar h1{margin: 20px auto 0px;color: white;}
+#sidebar h2{color: white;margin-bottom: 30px;}
+.container__sidebar{position: relative;background-color: rgb(136, 136, 136);border: none!important;width: 260px;height:100%;margin: 0rem;padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);-webkit-animation-name: animatetop;display: flex;flex-direction: column;
+    -webkit-animation-duration: 0.4s;animation-name: animatetop;animation-duration: .7s}
+
+@-webkit-keyframes animatetop {
+    from {right:0px; opacity:0} 
+    to {top:0; opacity:1}
+}
+@keyframes animatetop {
+    from {left:0px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+.btn-close-sidebar{position: absolute;color: white;font-size: 30px;top: 20px;right: 20px;background-color: rgb(180, 180, 180);border: 1px solid #ffffff67;border-radius: 50%;width: 50px;height: 50px;}
+.btn-close-sidebar:hover,
+.btn-close-sidebar:focus {color: black;text-decoration: none;cursor: pointer;background-color: #dad8d8;}
+.btn-close-sidebar{display: flex;justify-content: center;align-items: center;}
+
+.btn__bar{border: 1px solid #f0f0f0;background-color: white;}
+
 .logo{font-size: 24px;font-weight: bold;}
 .container__search{width: 70%;border: 1px solid #ccc;padding: 7px 10px;border-radius: 8px;}
 .container__search input{border: none; width: calc(100% - 40px);font-size: 16px;outline: none;}
 .container__search button{background-color: white;border: none;outline: none;}
+
+.container__categories{display: none;}
+.title_category {cursor: pointer;border:none;outline: none;transition: 0.4s;padding: 10px;}
+.title_category:after {content: '\003E';float: right;padding-left: 5px;}
+#categories {background-color: #fff;max-height: 0;overflow: hidden;transition: max-height 0.2s ease-out;display: flex;flex-direction: column;top: 35px;}
+#categories a{align-self: center;display: flex;border-radius: 5px!important;padding-left: 30px;}
+#categories a:hover{background-color: rgba(255,255,255,0.2);color: #fff!important;}
+#categories a b{margin-right: .8rem;}
+
 
 /* style products */
 .container__products__by_cat h2{text-align: center;}
@@ -52,6 +88,7 @@ header{padding: 25px;background-color: white;box-shadow: 2px 2px 2px 2px #cccccc
 .container__product img{width: inherit;max-height: 270px;}
 
 .container__price__car{display: flex;justify-content: space-between;}
+
 
 /* styles search page */
 .container__grid__products{display: grid;grid-template-columns: 1fr;row-gap: 25px;margin-bottom: 20px;}
@@ -66,6 +103,16 @@ header{padding: 25px;background-color: white;box-shadow: 2px 2px 2px 2px #cccccc
 
 
 @media only screen and (min-width: 600px){
+    .container__logo{display: block;}
+    .btn__bar{display: none;}
+    .container__categories{position: relative;display: flex;justify-items: center;}
+    .title_category{justify-content: space-between;}
+    #categories{position: absolute;z-index: 2;justify-items: inherit;border: 1px solid #ccc;border-radius: 7px;padding: 20px 10px;display: none;}
+    .container__categories:hover #categories{display: block;max-height: max-content;width: 200px;}
+    .container__categories:hover .title_category:after {content: "\02C5";}
+    #categories a{padding: 10px;}
+    #categories a:hover{background-color: rgb(92, 91, 91);}
+
     /* styles search page */
     .container__grid__products{grid-template-columns: 1fr 1fr 1fr 1fr 1fr;max-width: 1250px;margin: auto;row-gap: 25px;margin-bottom: 50px;}
     .container__grid__products .container__product {margin-left: 15px;width: 200px;}
