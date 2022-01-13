@@ -45,7 +45,7 @@ main = async () => {
     resp.data.map((d) => {
         header_categories += `
             <a href="./category.html?category=${d.name}">
-                <span> - ${d.name}</span>
+                <span>${d.name}</span>
             </a>
         `
     })
