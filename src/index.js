@@ -33,35 +33,8 @@ productsCategoryService = async (category) => {
 }
 
 main = async () => {
-
-    let resp = await categoryService();
     
-    let container_categories = document.getElementById("categories");
-    let sidebar = document.getElementById("sidebar");
-
-    let header_categories = ''
-
-    console.log(resp.data);
-    resp.data.map((d) => {
-        header_categories += `
-            <a href="./category.html?category=${d.name}">
-                <span>${d.name}</span>
-            </a>
-        `
-    })
-
-    container_categories.innerHTML = header_categories
-    sidebar.innerHTML = `
-        <span onclick="onClose()" class="btn-close-sidebar"><b>x</b></span>
-        <div class="container__sidebar">
-            <a href="./index.html" style="border: none"><h1>Bsale Test</h1></a>
-            <h2>Nuestras categorias:</h2>
-            ${header_categories}
-        </div>
-    `
-    //load data
     let container_products = document.getElementById("products");
-
     //loader
     let loader = ''
     for (let i = 0; i < 5; i++) {
@@ -81,9 +54,32 @@ main = async () => {
         </div>
     `
 
-    let content = '';
+    let resp = await categoryService();
+    
+    let container_categories = document.getElementById("categories");
+    let sidebar = document.getElementById("sidebar");
 
-    // loading data
+    let header_categories = ''
+
+    resp.data.map((d) => {
+        header_categories += `
+            <a href="./category.html?category=${d.name}">
+                <span>${d.name}</span>
+            </a>
+        `
+    })
+
+    container_categories.innerHTML = header_categories
+    sidebar.innerHTML = `
+        <span onclick="onClose()" class="btn-close-sidebar"><b>x</b></span>
+        <div class="container__sidebar">
+            <a href="./index.html" style="border: none"><h1>Bsale Test</h1></a>
+            <h2>Nuestras categorias:</h2>
+            ${header_categories}
+        </div>
+    `
+
+    let content = '';
 
     if (resp.statusText = "OK") {
 

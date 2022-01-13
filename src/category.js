@@ -33,6 +33,26 @@ productsCategoryService = async (category) => {
 }
 
 main = async () => {
+
+    let container_products = document.getElementById("products_categories");
+    // loader
+    let loader = ''
+    for (let i = 0; i < 5; i++) {
+        loader += `
+            <div class="container__loader_product">
+            </div>
+        `             
+    }
+    container_products.innerHTML = `
+        <h1>Categoria: </h1>
+        <div class="container__loader_products">
+            ${loader}
+        </div>
+        <div class="container__loader_products">
+            ${loader}
+        </div>
+    `
+    
     let respCat = await categoryService();
     
     let container_categories = document.getElementById("categories");
@@ -40,7 +60,6 @@ main = async () => {
 
     let header_categories = ''
 
-    console.log(respCat.data);
     respCat.data.map((d,i) => {
         header_categories += `
             <a href="./category.html?category=${d.name}">
@@ -59,34 +78,12 @@ main = async () => {
         </div>
     `
 
-    // load data
-    let container_products = document.getElementById("products_categories");
-
-    // loader
-    let loader = ''
-    for (let i = 0; i < 5; i++) {
-        loader += `
-            <div class="container__loader_product">
-            </div>
-        `             
-    }
-    container_products.innerHTML = `
-        <h1>Categoria: </h1>
-        <div class="container__loader_products">
-            ${loader}
-        </div>
-        <div class="container__loader_products">
-            ${loader}
-        </div>
-    `
-
     // get query
     let path = window.location.href
     let my_category = path.split("?category=")[1].replace(/\%20/gi, " ");
     
     // loading data
     let resp = await productsCategoryService(my_category);
-    console.log(resp);
 
     let content = '';
     let element = '';
